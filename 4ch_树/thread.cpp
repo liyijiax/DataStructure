@@ -13,13 +13,14 @@ using namespace std;
 #define NORMAL 0
 #define THREAD 1 
 
-void output(Node *node);
 
 typedef struct Node {
     int key;
     int ltag, rtag;
     struct Node *lchild, *rchild;
 } Node;
+
+void output(Node *node);
 
 Node *getNewNode(int val) {
     Node *p = (Node *)malloc(sizeof(Node));
@@ -41,7 +42,6 @@ void build_thread(Node *root) {
     if (root == NULL) return ;
     static Node *pre = NULL;
     build_thread(root->lchild);
-    output(root);
     if (root->lchild == NULL) {
         root->lchild = pre;
         root->ltag = THREAD;
